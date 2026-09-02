@@ -1,0 +1,6 @@
+{
+  "name": "Temple of Bajor - Portal of Light & Orb of Time",
+  "description": "An immersive portal of light in the Bajoran language featuring the Orb of Time, the Celestial Temple, and cinematic Bajoran persona transformation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
