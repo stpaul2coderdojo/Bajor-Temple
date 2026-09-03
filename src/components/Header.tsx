@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX, Sparkles, Wand2, Compass, Languages, Flame, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, Wand2, Compass, Languages, Flame, ExternalLink, ShieldCheck, Heart } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
 interface HeaderProps {
   activeTab: 'portal' | 'transform' | 'orbs' | 'translator' | 'sanctuary';
   setActiveTab: (tab: 'portal' | 'transform' | 'orbs' | 'translator' | 'sanctuary') => void;
   onOrbClick?: () => void;
+  onOpenAuthorModal?: (tab?: 'authorship' | 'benevity' | 'webapk') => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOrbClick }) => {
+export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOrbClick, onOpenAuthorModal }) => {
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
 
@@ -149,6 +150,19 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOrbCl
                 </div>
               )}
             </button>
+
+            {/* Benevity Causes: Mother Divine Seattle & Author */}
+            {onOpenAuthorModal && (
+              <button
+                onClick={() => onOpenAuthorModal('benevity')}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-rose-500/30 bg-rose-950/40 hover:bg-rose-900/40 text-rose-200 text-xs font-['Outfit'] transition-all shadow-sm"
+                title="Benevity Causes: Support Mother Divine Inc Seattle"
+              >
+                <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400/40" />
+                <span className="hidden md:inline font-medium">Benevity Cause</span>
+                <span className="md:hidden font-medium">Cause</span>
+              </button>
+            )}
 
             {/* Temple External Archive Link */}
             <a

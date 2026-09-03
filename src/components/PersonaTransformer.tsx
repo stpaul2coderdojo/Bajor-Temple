@@ -185,7 +185,7 @@ export const PersonaTransformer: React.FC<PersonaTransformerProps> = ({
           BECOME A PERSONA OF BAJOR
         </h2>
         <p className="text-xs sm:text-sm text-amber-100/70 font-['Outfit']">
-          Upload any portrait to manifest as a high spiritual dignitary, noble militia warrior, or ancient temple architect with authentic nasal ridges, right-ear d’ja pagh jewelry, and personalized Pagh prophecy.
+          Upload any portrait to manifest as an interstellar Diplomat, noble Militia defender, or peaceful Pacifist monk with authentic nasal ridges, right-ear d’ja pagh jewelry, and personalized Pagh prophecy.
         </p>
       </div>
 
@@ -290,7 +290,7 @@ export const PersonaTransformer: React.FC<PersonaTransformerProps> = ({
             <div className="flex items-center justify-between">
               <label className="text-xs font-['Cinzel'] text-amber-200 font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>1. Select Bajoran Archetype</span>
+                <span>1. Select Bajoran Archetype (Diplomats, Militia, Pacifists)</span>
               </label>
               <span className="text-[11px] text-amber-300 font-['Outfit']">
                 {selectedArchetype.name}
@@ -300,35 +300,46 @@ export const PersonaTransformer: React.FC<PersonaTransformerProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {BAJORAN_ARCHETYPES.map((arch) => {
                 const isSelected = selectedArchetype.id === arch.id;
+                const isDisabled = Boolean(arch.disabled);
+
                 return (
                   <button
                     key={arch.id}
+                    disabled={isDisabled}
                     onClick={() => {
-                      setSelectedArchetype(arch);
-                      audioEngine.playTempleChime();
+                      if (!isDisabled) {
+                        setSelectedArchetype(arch);
+                        audioEngine.playTempleChime();
+                      }
                     }}
                     className={`p-3 rounded-xl border text-left transition-all relative overflow-hidden flex flex-col justify-between ${
-                      isSelected
+                      isDisabled
+                        ? 'bg-[#090d18]/50 border-gray-800 text-gray-500 cursor-not-allowed opacity-50'
+                        : isSelected
                         ? 'bg-[#152038] border-amber-400 text-amber-100 shadow-md shadow-amber-500/20'
                         : 'bg-[#0d1322] border-amber-500/15 text-amber-200/70 hover:bg-[#11192e] hover:border-amber-500/30'
                     }`}
                   >
                     <div>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-['Cinzel'] text-xs font-bold text-amber-200">
+                        <span className={`font-['Cinzel'] text-xs font-bold ${isDisabled ? 'text-gray-400 line-through' : 'text-amber-200'}`}>
                           {arch.name}
                         </span>
-                        {isSelected && (
+                        {isDisabled ? (
+                          <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-red-950/60 border border-red-800/40 text-red-300">
+                            Disabled
+                          </span>
+                        ) : isSelected ? (
                           <div className="w-4 h-4 rounded-full bg-amber-400 text-black flex items-center justify-center text-[10px] font-bold">
                             ✓
                           </div>
-                        )}
+                        ) : null}
                       </div>
-                      <p className="text-[11px] text-amber-200/60 font-['Outfit'] line-clamp-2">
-                        {arch.description}
+                      <p className={`text-[11px] font-['Outfit'] line-clamp-2 ${isDisabled ? 'text-gray-500' : 'text-amber-200/60'}`}>
+                        {isDisabled ? (arch.disabledReason || 'Archetype unavailable') : arch.description}
                       </p>
                     </div>
-                    <div className="mt-2 text-[10px] font-mono text-amber-300/80 bg-black/40 px-2 py-0.5 rounded border border-amber-500/20">
+                    <div className={`mt-2 text-[10px] font-mono px-2 py-0.5 rounded border ${isDisabled ? 'text-gray-500 bg-black/20 border-gray-800' : 'text-amber-300/80 bg-black/40 border-amber-500/20'}`}>
                       {arch.title}
                     </div>
                   </button>

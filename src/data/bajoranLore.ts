@@ -77,26 +77,15 @@ export const SACRED_ORBS: SacredOrb[] = [
 
 export const BAJORAN_ARCHETYPES: BajoranArchetype[] = [
   {
-    id: 'vedek',
-    name: 'Vedek Spiritual Scholar',
-    title: 'Keeper of the Sacred Prophecies',
-    description: 'Devoted to contemplation, theological scholarship, and reading the Pagh of all who seek blessing.',
-    attire: 'Crimson silk and copper brocade flowing robes with high ceremonial mantle and embroidered Pagh runes.',
-    spiritualFocus: 'Harmonizing temple congregations, interpreting Orb visions, and divine counsel.',
+    id: 'emissary-liaison',
+    name: 'Celestial Temple Diplomat',
+    title: 'Federation & Bajoran Alliance Envoy',
+    description: 'Bridging the cosmic realm of the Prophets with the broader interstellar quadrant.',
+    attire: 'Starfleet officer uniform seamlessly integrated with traditional Bajoran ceremonial sash and d’ja pagh earring.',
+    spiritualFocus: 'Diplomatic unity, scientific study of the wormhole, and honoring ancient prophecies.',
     defaultEpoch: 'epoch-ds9',
-    iconName: 'Sparkles',
-    accentColor: '#e11d48'
-  },
-  {
-    id: 'kai',
-    name: 'Kai Supreme Spiritual Leader',
-    title: 'Voice of the Prophets on Bajor',
-    description: 'The highest religious authority of the Bajoran faith, clad in regal auric vestments and sacred headdress.',
-    attire: 'Regal layered burgundy velvet with gold-threaded solar sunbursts, jewel-encrusted pagh pectoral, and ceremonial mitre.',
-    spiritualFocus: 'Spiritual leadership of all Bajor, coronation of leaders, and communion with the Emissary.',
-    defaultEpoch: 'epoch-ds9',
-    iconName: 'Crown',
-    accentColor: '#f59e0b'
+    iconName: 'Globe',
+    accentColor: '#0284c7'
   },
   {
     id: 'militia-commander',
@@ -111,9 +100,9 @@ export const BAJORAN_ARCHETYPES: BajoranArchetype[] = [
   },
   {
     id: 'artisan',
-    name: 'Master Artisan of Ashalla',
-    title: 'Creator of Holy Reliquaries',
-    description: 'Weaver of sacred textiles, carver of temple spires, and jeweler of d’ja pagh ear heirlooms.',
+    name: 'Master Artisan of Ashalla (Pacifist)',
+    title: 'Creator of Holy Reliquaries & Non-Violent Healer',
+    description: 'Weaver of sacred textiles, carver of temple spires, and jeweler of d’ja pagh ear heirlooms committed to peaceful creation.',
     attire: 'Earth-toned woven tunic with lapis and amber beadwork, artisan apron, and engraved drafting stylus.',
     spiritualFocus: 'Preservation of Bajoran artistic heritage and crafting vessels worthy of the Orbs.',
     defaultEpoch: 'epoch-ancient',
@@ -122,7 +111,7 @@ export const BAJORAN_ARCHETYPES: BajoranArchetype[] = [
   },
   {
     id: 'orb-custodian',
-    name: 'Orb Custodian & Seer',
+    name: 'Orb Custodian & Pacifist Seer',
     title: 'Guardian of the Celestial Reliquaries',
     description: 'Initiated in the sacred rites of unsealing the Tears of the Prophets within the inner sanctum.',
     attire: 'Deep midnight indigo and gold starlight hooded vestments with consecrated copper unsealing tongs.',
@@ -132,15 +121,30 @@ export const BAJORAN_ARCHETYPES: BajoranArchetype[] = [
     accentColor: '#8b5cf6'
   },
   {
-    id: 'emissary-liaison',
-    name: 'Celestial Temple Diplomat',
-    title: 'Federation & Bajoran Alliance Envoy',
-    description: 'Bridging the cosmic realm of the Prophets with the broader interstellar quadrant.',
-    attire: 'Starfleet officer uniform seamlessly integrated with traditional Bajoran ceremonial sash and d’ja pagh earring.',
-    spiritualFocus: 'Diplomatic unity, scientific study of the wormhole, and honoring ancient prophecies.',
+    id: 'vedek',
+    name: 'Vedek Spiritual Scholar',
+    title: 'Keeper of the Sacred Prophecies',
+    description: 'Devoted to contemplation, theological scholarship, and reading the Pagh of all who seek blessing.',
+    attire: 'Crimson silk and copper brocade flowing robes with high ceremonial mantle and embroidered Pagh runes.',
+    spiritualFocus: 'Harmonizing temple congregations, interpreting Orb visions, and divine counsel.',
     defaultEpoch: 'epoch-ds9',
-    iconName: 'Globe',
-    accentColor: '#0284c7'
+    iconName: 'Sparkles',
+    accentColor: '#e11d48',
+    disabled: true,
+    disabledReason: 'Vedek clergy archetype is disabled (restricted to Diplomats, Militia & Pacifists)'
+  },
+  {
+    id: 'kai',
+    name: 'Kai Supreme Spiritual Leader',
+    title: 'Voice of the Prophets on Bajor',
+    description: 'The highest religious authority of the Bajoran faith, clad in regal auric vestments and sacred headdress.',
+    attire: 'Regal layered burgundy velvet with gold-threaded solar sunbursts, jewel-encrusted pagh pectoral, and ceremonial mitre.',
+    spiritualFocus: 'Spiritual leadership of all Bajor, coronation of leaders, and communion with the Emissary.',
+    defaultEpoch: 'epoch-ds9',
+    iconName: 'Crown',
+    accentColor: '#f59e0b',
+    disabled: true,
+    disabledReason: 'Kai high dignitary archetype is disabled (restricted to Diplomats, Militia & Pacifists)'
   }
 ];
 
@@ -320,7 +324,7 @@ export const SAMPLE_INPUT_PORTRAITS = [
     gender: 'Neutral',
     role: 'Alpha Quadrant Ambassador',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop&q=80',
-    description: 'Ideal for seeing how a Terran officer transforms into a Bajoran high dignitary.'
+    description: 'Ideal for seeing how an officer transforms into a Celestial Temple Diplomat.'
   },
   {
     id: 'sample-scholar',
@@ -328,7 +332,7 @@ export const SAMPLE_INPUT_PORTRAITS = [
     gender: 'Masculine',
     role: 'Xenoculture Researcher',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80',
-    description: 'Great for seeing the transition to a Vedek scholar with ornate nasal ridges.'
+    description: 'Great for seeing the transition to a peaceful Ashalla artisan or temple custodian.'
   },
   {
     id: 'sample-pilot',
@@ -344,7 +348,7 @@ export const SAMPLE_INPUT_PORTRAITS = [
     gender: 'Masculine',
     role: 'Archives Elder',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=80',
-    description: 'Exemplifies the venerable Kai Supreme Leader metamorphosis.'
+    description: 'Exemplifies the venerable Pacifist Reliquary Seer metamorphosis.'
   }
 ];
 

@@ -8,6 +8,8 @@ export interface BajoranArchetype {
   defaultEpoch: string;
   iconName: string;
   accentColor: string;
+  disabled?: boolean;
+  disabledReason?: string;
 }
 
 export interface EarCuffStyle {
@@ -82,4 +84,15 @@ export interface OrbProphecyResponse {
   temporalVision: string;
   guidanceForPagh: string;
   visionClarity: number;
+}
+
+export interface SpiritualJournalEntry {
+  id: string;
+  orbId: string;
+  orbName: string;
+  query: string;
+  prophecySnippet: string;
+  reflectionNote: string;
+  createdAt: number;
+  paghMood?: 'serene' | 'courageous' | 'seeking' | 'grateful' | 'resolved';
 }

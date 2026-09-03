@@ -1,0 +1,32 @@
+{
+  "name": "Temple of Bajor - Portal of Light & Orb of Time",
+  "short_name": "Temple of Bajor",
+  "description": "An immersive portal of light in the Bajoran language featuring the Orb of Time, the Celestial Temple, and cinematic Bajoran persona transformation.",
+  "author": "Vedek Bheemaiah Anil Kumar, Mother Divine Inc Seattle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06080e",
+  "theme_color": "#f59e0b",
+  "orientation": "portrait",
+  "categories": ["entertainment", "lifestyle"],
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Orb of Time",
+      "url": "/#portal",
+      "description": "Commune with the Orb of Time"
+    },
+    {
+      "name": "Persona Transformation",
+      "url": "/#transform",
+      "description": "Transform into a Bajoran persona"
+    }
+  ]
+}

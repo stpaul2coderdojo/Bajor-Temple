@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, Play, Pause, RotateCcw, Sparkles, ExternalLink, BookOpen, Volume2, Shield } from 'lucide-react';
+import { Flame, Play, Pause, RotateCcw, Sparkles, ExternalLink, BookOpen, Volume2, Shield, Heart, Building2 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
-export const TempleSanctuary: React.FC = () => {
+interface TempleSanctuaryProps {
+  onOpenBenevityModal?: () => void;
+}
+
+export const TempleSanctuary: React.FC<TempleSanctuaryProps> = ({ onOpenBenevityModal }) => {
   const [isMeditating, setIsMeditating] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number>(180); // 3 mins default
   const [selectedDuration, setSelectedDuration] = useState<number>(180);
@@ -154,8 +158,55 @@ export const TempleSanctuary: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Scripture Archives & Temple of Bajor Link */}
+        {/* Right: Scripture Archives & Temple of Bajor Link & Benevity Cause */}
         <div className="lg:col-span-5 space-y-4">
+          {/* Benevity Causes - Mother Divine Inc Seattle Card */}
+          <div className="bg-gradient-to-br from-[#1c1224] via-[#151a2e] to-[#0c101d] border-2 border-rose-500/40 rounded-2xl p-5 space-y-3 shadow-xl">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-['Cinzel'] text-rose-300 font-bold uppercase tracking-wider flex items-center gap-1.5">
+                <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400/40" />
+                <span>Benevity Causes</span>
+              </span>
+              <span className="text-[10px] font-mono text-rose-300 bg-rose-950/80 px-2 py-0.5 rounded border border-rose-500/40">
+                Workplace Giving
+              </span>
+            </div>
+
+            <div className="space-y-1">
+              <h3 className="text-base font-['Cinzel'] font-bold text-amber-100">
+                Mother Divine Inc. (Seattle)
+              </h3>
+              <p className="text-[11px] text-amber-300/80 font-['Outfit']">
+                Authored & Guided by <span className="font-semibold text-amber-200">Vedek Bheemaiah Anil Kumar</span>
+              </p>
+            </div>
+
+            <p className="text-xs text-amber-100/80 font-['Outfit'] leading-relaxed">
+              Support Mother Divine Inc. Seattle through company matching donations, corporate grants, and volunteer giving via the official <strong>Benevity Causes</strong> portal.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-2 pt-1">
+              <a
+                href="https://causes.benevity.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-rose-500 via-rose-600 to-amber-600 hover:brightness-110 text-white text-xs font-['Cinzel'] font-bold flex items-center justify-center gap-1.5 transition-all shadow-md shadow-rose-500/20"
+              >
+                <span>Benevity Causes Link</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+
+              {onOpenBenevityModal && (
+                <button
+                  onClick={onOpenBenevityModal}
+                  className="py-2.5 px-3 rounded-xl bg-[#1a2542] hover:bg-[#23325a] border border-amber-400/30 text-amber-200 text-xs font-['Cinzel'] transition-all"
+                >
+                  Cause Details
+                </button>
+              )}
+            </div>
+          </div>
+
           {/* Temple of Bajor Official Portal Card */}
           <div className="bg-gradient-to-br from-[#121a30] to-[#0a0f1d] border-2 border-amber-400/40 rounded-2xl p-5 space-y-3 shadow-xl">
             <div className="flex items-center justify-between">
