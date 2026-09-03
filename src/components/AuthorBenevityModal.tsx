@@ -11,14 +11,18 @@ import {
   Copy,
   Sparkles,
   Info,
-  Gift
+  Gift,
+  Terminal,
+  Box,
+  Monitor,
+  Apple
 } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
 interface AuthorBenevityModalProps {
   isOpen: boolean;
   onClose: () => void;
-  defaultTab?: 'authorship' | 'benevity' | 'webapk';
+  defaultTab?: 'authorship' | 'benevity' | 'webapk' | 'docker';
 }
 
 export const AuthorBenevityModal: React.FC<AuthorBenevityModalProps> = ({
@@ -26,7 +30,7 @@ export const AuthorBenevityModal: React.FC<AuthorBenevityModalProps> = ({
   onClose,
   defaultTab = 'authorship'
 }) => {
-  const [activeTab, setActiveTab] = useState<'authorship' | 'benevity' | 'webapk'>(defaultTab);
+  const [activeTab, setActiveTab] = useState<'authorship' | 'benevity' | 'webapk' | 'docker'>(defaultTab);
   const [copiedText, setCopiedText] = useState<string | null>(null);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [isInstalled, setIsInstalled] = useState<boolean>(false);
@@ -151,7 +155,7 @@ export const AuthorBenevityModal: React.FC<AuthorBenevityModalProps> = ({
         <div className="flex rounded-xl bg-[#050811] p-1 border border-amber-500/20 text-xs font-['Cinzel']">
           <button
             onClick={() => setActiveTab('authorship')}
-            className={`flex-1 py-2 px-2 rounded-lg transition-all text-center ${
+            className={`flex-1 py-2 px-1 sm:px-2 rounded-lg transition-all text-center ${
               activeTab === 'authorship'
                 ? 'bg-amber-500 text-black font-bold shadow'
                 : 'text-amber-200/70 hover:text-amber-100'
@@ -161,25 +165,36 @@ export const AuthorBenevityModal: React.FC<AuthorBenevityModalProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('benevity')}
-            className={`flex-1 py-2 px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1.5 ${
+            className={`flex-1 py-2 px-1 sm:px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1 ${
               activeTab === 'benevity'
                 ? 'bg-rose-500 text-white font-bold shadow'
                 : 'text-amber-200/70 hover:text-amber-100'
             }`}
           >
             <Heart className="w-3 h-3 text-rose-300 fill-rose-300/40" />
-            <span>Benevity Causes</span>
+            <span className="truncate">Benevity</span>
           </button>
           <button
             onClick={() => setActiveTab('webapk')}
-            className={`flex-1 py-2 px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1.5 ${
+            className={`flex-1 py-2 px-1 sm:px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1 ${
               activeTab === 'webapk'
                 ? 'bg-amber-500 text-black font-bold shadow'
                 : 'text-amber-200/70 hover:text-amber-100'
             }`}
           >
             <Smartphone className="w-3 h-3" />
-            <span>WebAPK / App</span>
+            <span className="truncate">WebAPK</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('docker')}
+            className={`flex-1 py-2 px-1 sm:px-2 rounded-lg transition-all text-center flex items-center justify-center gap-1 ${
+              activeTab === 'docker'
+                ? 'bg-sky-500 text-black font-bold shadow'
+                : 'text-amber-200/70 hover:text-amber-100'
+            }`}
+          >
+            <Box className="w-3 h-3 text-sky-400" />
+            <span className="truncate">Docker</span>
           </button>
         </div>
 
@@ -373,6 +388,90 @@ export const AuthorBenevityModal: React.FC<AuthorBenevityModalProps> = ({
               <div className="p-3 rounded-xl bg-[#0a0f1d] border border-amber-500/15 space-y-1">
                 <span className="font-bold text-amber-300 block">iOS (Safari):</span>
                 <span>Tap the Share button &gt; scroll down and select "Add to Home Screen".</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Tab 4: Docker & Multi-Platform Builds */}
+        {activeTab === 'docker' && (
+          <div className="space-y-4 font-['Outfit']">
+            <div className="p-5 rounded-2xl bg-[#0a1224] border-2 border-sky-500/40 space-y-3 shadow-xl">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <div className="p-3 rounded-2xl bg-sky-500/20 border border-sky-400 text-sky-300">
+                    <Box className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-['Cinzel'] font-bold text-sky-200 text-base">
+                      Docker Container
+                    </h4>
+                    <p className="text-xs text-sky-300/70 font-mono">
+                      temple-of-bajor:latest • Port 3000
+                    </p>
+                  </div>
+                </div>
+
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950/80 border border-sky-500/40 text-sky-300 font-bold uppercase">
+                  Production
+                </span>
+              </div>
+
+              <p className="text-xs text-amber-100/80 leading-relaxed">
+                Run the multi-stage, hardened Node 20 Alpine production container locally or deploy to any Kubernetes / Cloud Run cluster:
+              </p>
+
+              {/* One-click docker run copy snippet */}
+              <div className="p-3 rounded-xl bg-[#040813] border border-sky-500/25 space-y-2">
+                <div className="flex items-center justify-between text-[11px] text-sky-300/80 font-mono">
+                  <span>Docker CLI Command</span>
+                  <button
+                    onClick={() => handleCopy('docker run -d -p 3000:3000 --name temple-of-bajor temple-of-bajor:latest', 'docker-run')}
+                    className="text-sky-300 hover:text-white flex items-center gap-1"
+                  >
+                    {copiedText === 'docker-run' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>{copiedText === 'docker-run' ? 'Copied' : 'Copy'}</span>
+                  </button>
+                </div>
+                <pre className="text-[11px] font-mono text-amber-200/90 overflow-x-auto whitespace-pre p-2 rounded bg-black/50">
+                  docker run -d -p 3000:3000 --name temple-of-bajor temple-of-bajor:latest
+                </pre>
+              </div>
+
+              {/* Compose Command */}
+              <div className="p-3 rounded-xl bg-[#040813] border border-sky-500/25 space-y-2">
+                <div className="flex items-center justify-between text-[11px] text-sky-300/80 font-mono">
+                  <span>Docker Compose</span>
+                  <button
+                    onClick={() => handleCopy('docker compose up -d', 'docker-compose')}
+                    className="text-sky-300 hover:text-white flex items-center gap-1"
+                  >
+                    {copiedText === 'docker-compose' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    <span>{copiedText === 'docker-compose' ? 'Copied' : 'Copy'}</span>
+                  </button>
+                </div>
+                <pre className="text-[11px] font-mono text-amber-200/90 overflow-x-auto whitespace-pre p-2 rounded bg-black/50">
+                  docker compose up -d
+                </pre>
+              </div>
+            </div>
+
+            {/* Platform builds summary */}
+            <div className="grid grid-cols-3 gap-2 text-center text-xs">
+              <div className="p-3 rounded-xl bg-[#0a0f1d] border border-amber-500/15 space-y-1">
+                <Smartphone className="w-4 h-4 text-emerald-400 mx-auto" />
+                <span className="font-bold text-amber-200 block text-[11px]">Android</span>
+                <span className="text-[10px] text-amber-300/60 font-mono">WebAPK</span>
+              </div>
+              <div className="p-3 rounded-xl bg-[#0a0f1d] border border-amber-500/15 space-y-1">
+                <Apple className="w-4 h-4 text-rose-300 mx-auto" />
+                <span className="font-bold text-amber-200 block text-[11px]">iOS</span>
+                <span className="text-[10px] text-amber-300/60 font-mono">Safari PWA</span>
+              </div>
+              <div className="p-3 rounded-xl bg-[#0a0f1d] border border-amber-500/15 space-y-1">
+                <Monitor className="w-4 h-4 text-sky-300 mx-auto" />
+                <span className="font-bold text-amber-200 block text-[11px]">Desktop</span>
+                <span className="text-[10px] text-amber-300/60 font-mono">Chrome / Edge</span>
               </div>
             </div>
           </div>

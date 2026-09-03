@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX, Sparkles, Wand2, Compass, Languages, Flame, ExternalLink, ShieldCheck, Heart } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles, Wand2, Compass, Languages, Flame, ExternalLink, ShieldCheck, Heart, Box, Smartphone } from 'lucide-react';
 import { audioEngine } from '../utils/audioEngine';
 
 interface HeaderProps {
   activeTab: 'portal' | 'transform' | 'orbs' | 'translator' | 'sanctuary';
   setActiveTab: (tab: 'portal' | 'transform' | 'orbs' | 'translator' | 'sanctuary') => void;
   onOrbClick?: () => void;
-  onOpenAuthorModal?: (tab?: 'authorship' | 'benevity' | 'webapk') => void;
+  onOpenAuthorModal?: (tab?: 'authorship' | 'benevity' | 'webapk' | 'docker') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOrbClick, onOpenAuthorModal }) => {
@@ -161,6 +161,30 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOrbCl
                 <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400/40" />
                 <span className="hidden md:inline font-medium">Benevity Cause</span>
                 <span className="md:hidden font-medium">Cause</span>
+              </button>
+            )}
+
+            {/* Docker & Builds Modal Trigger */}
+            {onOpenAuthorModal && (
+              <button
+                onClick={() => onOpenAuthorModal('docker')}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-sky-500/35 bg-sky-950/40 hover:bg-sky-900/40 text-sky-200 text-xs font-['Outfit'] transition-all shadow-sm"
+                title="Docker Container & Multi-Platform Builds (Android, iOS, Desktop)"
+              >
+                <Box className="w-3.5 h-3.5 text-sky-400" />
+                <span className="hidden lg:inline font-medium">Docker</span>
+              </button>
+            )}
+
+            {/* WebAPK / App Trigger */}
+            {onOpenAuthorModal && (
+              <button
+                onClick={() => onOpenAuthorModal('webapk')}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-amber-400/35 bg-amber-500/15 hover:bg-amber-500/25 text-amber-200 text-xs font-['Outfit'] transition-all shadow-sm"
+                title="Install WebAPK (Android, iOS, Desktop)"
+              >
+                <Smartphone className="w-3.5 h-3.5 text-amber-400" />
+                <span className="hidden lg:inline font-medium">WebAPK</span>
               </button>
             )}
 

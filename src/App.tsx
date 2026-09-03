@@ -14,15 +14,15 @@ import { BajoranTranslatorView } from './components/BajoranTranslatorView';
 import { TempleSanctuary } from './components/TempleSanctuary';
 import { AuthorBenevityModal } from './components/AuthorBenevityModal';
 import { TransformationResult } from './types';
-import { ExternalLink, Sparkles, Heart, Smartphone, Building2, User } from 'lucide-react';
+import { ExternalLink, Sparkles, Heart, Smartphone, Building2, User, Box } from 'lucide-react';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'portal' | 'transform' | 'orbs' | 'translator' | 'sanctuary'>('portal');
   const [transformationResult, setTransformationResult] = useState<TransformationResult | null>(null);
   const [isAuthorModalOpen, setIsAuthorModalOpen] = useState(false);
-  const [authorModalTab, setAuthorModalTab] = useState<'authorship' | 'benevity' | 'webapk'>('authorship');
+  const [authorModalTab, setAuthorModalTab] = useState<'authorship' | 'benevity' | 'webapk' | 'docker'>('authorship');
 
-  const handleOpenAuthorModal = (tab: 'authorship' | 'benevity' | 'webapk' = 'authorship') => {
+  const handleOpenAuthorModal = (tab: 'authorship' | 'benevity' | 'webapk' | 'docker' = 'authorship') => {
     setAuthorModalTab(tab);
     setIsAuthorModalOpen(true);
   };
@@ -133,6 +133,15 @@ export default function App() {
             >
               <Smartphone className="w-3 h-3 text-amber-400" />
               <span>Install WebAPK</span>
+            </button>
+
+            <button
+              onClick={() => handleOpenAuthorModal('docker')}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0a152d] hover:bg-[#101f40] border border-sky-500/35 text-sky-200 text-xs font-['Outfit'] transition-all"
+              title="Docker Container & Multi-Platform Builds"
+            >
+              <Box className="w-3 h-3 text-sky-400" />
+              <span>Docker & Builds</span>
             </button>
           </div>
         </div>

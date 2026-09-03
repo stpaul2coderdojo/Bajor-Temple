@@ -1,0 +1,13 @@
+services:
+  temple-of-bajor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: temple-of-bajor
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    restart: unless-stopped

@@ -1,0 +1,55 @@
+name: Build, Containerize & Multi-Platform PWA/WebAPK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-and-lint:
+    name: Build & Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Typecheck / Lint
+        run: npm run lint
+
+      - name: Build Web Application & Server
+        run: npm run build
+
+      - name: Upload Production Web Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: temple-of-bajor-dist
+          path: dist/
+
+  docker-build:
+    name: Docker Container Build
+    needs: build-and-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: temple-of-bajor:latest
